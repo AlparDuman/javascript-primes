@@ -20,5 +20,29 @@
 class primes {
 
     constructor() { }
-    
+
+    /* ---------- IS PRIME ---------- */
+
+    isPrime(number) { }
+
+    isPrimeTrialDivision(number) { }
+    isPrimeSieveEratosthenes(number) { }
+    isPrimeBucketSieve(number) { }
+
+    /* ---------- COUNT PRIMES ---------- */
+
+    countPrimes(range, start = 0) { }
+
+    countPrimesTrialDivision(range, start = 0) { }
+    countPrimesSieveEratosthenes(range, start = 0) { }
+    countPrimesBucketSieve(range, start = 0) { }
+
+    /* ---------- GET PRIMES ---------- */
+
+    getPrimes(range, start = 0) { }
+
+    getPrimesTrialDivision(range, start = 0) { }
+    getPrimesSieveEratosthenes(range, start = 0) { }
+    getPrimesBucketSieve(range, start = 0) { }
+
 }
