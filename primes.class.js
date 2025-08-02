@@ -44,7 +44,8 @@ class primes {
     isPrimeSieveEratosthenes(number) {
         if (!Number.isInteger(number) || number < 2 || number != 2 && number % 2 == 0)
             return false;
-        const field = new Array(number + 1).fill(true), end = Math.floor(Math.sqrt(number));
+        const field = new Array(number + 1).fill(true);
+        const end = Math.floor(Math.sqrt(number));
         for (let candidate = 3; candidate <= end; candidate += 2)
             if (field[candidate])
                 for (let multiple = candidate * 2; multiple <= number; multiple += candidate)
@@ -88,7 +89,8 @@ class primes {
         if (!Number.isInteger(range) || !Number.isInteger(start))
             return 0;
         let count = start < 2 ? 0 : 1;
-        const field = new Array(start + range + 1).fill(true), end = Math.floor(Math.sqrt(start + range));
+        const field = new Array(start + range + 1).fill(true);
+        const end = Math.floor(Math.sqrt(start + range));
         for (let candidate = 3; candidate <= end; candidate += 2)
             if (field[candidate]) {
                 count++;
@@ -130,7 +132,8 @@ class primes {
         if (!Number.isInteger(range) || !Number.isInteger(start))
             return 0;
         let primes = start < 2 ? [] : [2];
-        const field = new Array(start + range + 1).fill(true), end = Math.floor(Math.sqrt(start + range));
+        const field = new Array(start + range + 1).fill(true);
+        const end = Math.floor(Math.sqrt(start + range));
         for (let candidate = 3; candidate <= end; candidate += 2)
             if (field[candidate]) {
                 primes.push(candidate);
