@@ -54,7 +54,7 @@ class primes {
     }/* every even candidate is unused -> field can be compressed */
 
     isPrimeBucketSieve(number) {
-        if (!Number.isInteger(number) || number < 2)
+        if (!Number.isInteger(number) || number < 2 || number != 2 && number % 2 == 0)
             return false;
         const limit = Math.floor(Math.sqrt(number));
         const smallPrimes = this.getPrimesSieveEratosthenes(Math.floor(Math.sqrt(limit)));
@@ -62,6 +62,31 @@ class primes {
             if (number % prime == 0)
                 return number == prime;
         return true;
+    }
+
+    selfTestIsPrime(range = 20, start = 0) {
+        console.log('Self test is prime');
+        const end = start + range;
+
+        let resultsTD = [];
+        for (let i = start; i < end; i++)
+            resultsTD.push(this.isPrimeTrialDivision(i));
+
+        let resultsSE = [];
+        for (let i = start; i < end; i++)
+            resultsSE.push(this.isPrimeSieveEratosthenes(i));
+
+        let resultsBS = [];
+        for (let i = start; i < end; i++)
+            resultsBS.push(this.isPrimeBucketSieve(i));
+
+        console.log('Test isPrimeTrialDivision()', resultsTD);
+        console.log('Test isPrimeSieveEratosthenes()', resultsSE);
+        console.log('Test isPrimeBucketSieve()', resultsBS);
+
+        for (let i = start; i < end; i++)
+            if (resultsTD[i] !== resultsSE[i] || resultsSE[i] !== resultsBS[i])
+                console.error(`Found issue for ${i}: {trial: ${resultsTD[i]}, sieve: ${resultsSE[i]}, bucket: ${resultsBS[i]}}`);
     }
 
 
@@ -102,9 +127,25 @@ class primes {
 
     countPrimesBucketSieve(range, start = 0) {
         if (!Number.isInteger(range) || !Number.isInteger(start))
-            return [];
+            return 0;
         console.error('Not implemented yet');
-        return [];
+        return 0;
+    }
+
+    selfTestCountPrimes(range = 20, start = 0) {
+        console.log('Self test count primes');
+
+        let resultsTD = this.countPrimesTrialDivision(range, start);
+        let resultsSE = this.countPrimesSieveEratosthenes(range, start);
+        let resultsBS = this.countPrimesBucketSieve(range, start);
+
+        console.log('Test countPrimesTrialDivision()', resultsTD);
+        console.log('Test countPrimesSieveEratosthenes()', resultsSE);
+        console.log('Test countPrimesBucketSieve()', resultsBS);
+
+        for (let i = start; i < range; i++)
+            if (resultsTD[i] !== resultsSE[i] || resultsSE[i] !== resultsBS[i])
+                console.error(`Found issue for ${i}: {trial: ${resultsTD[i]}, sieve: ${resultsSE[i]}, bucket: ${resultsBS[i]}}`);
     }
 
 
@@ -148,6 +189,22 @@ class primes {
             return [];
         console.error('Not implemented yet');
         return [];
+    }
+
+    selfTestGetPrimes(range = 20, start = 0) {
+        console.log('Self test get primes');
+
+        let resultsTD = this.getPrimesTrialDivision(range, start);
+        let resultsSE = this.getPrimesSieveEratosthenes(range, start);
+        let resultsBS = this.getPrimesBucketSieve(range, start);
+
+        console.log('Test getPrimesTrialDivision()', resultsTD);
+        console.log('Test getPrimesSieveEratosthenes()', resultsSE);
+        console.log('Test getPrimesBucketSieve()', resultsBS);
+
+        for (let i = start; i < range; i++)
+            if (resultsTD[i] !== resultsSE[i] || resultsSE[i] !== resultsBS[i])
+                console.error(`Found issue for ${i}: {trial: ${resultsTD[i]}, sieve: ${resultsSE[i]}, bucket: ${resultsBS[i]}}`);
     }
 
 }
