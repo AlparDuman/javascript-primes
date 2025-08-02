@@ -38,11 +38,15 @@ class primes {
     }
 
     isPrimeSieveEratosthenes(number) {
+        if (!Number.isInteger(number))
+            return false;
         console.error('Not implemented yet');
         return false;
     }
 
     isPrimeBucketSieve(number) {
+        if (!Number.isInteger(number))
+            return false;
         console.error('Not implemented yet');
         return false;
     }
@@ -65,11 +69,15 @@ class primes {
     }
 
     countPrimesSieveEratosthenes(range, start = 0) {
+        if (!Number.isInteger(range) || !Number.isInteger(start))
+            return [];
         console.error('Not implemented yet');
         return [];
     }
 
     countPrimesBucketSieve(range, start = 0) {
+        if (!Number.isInteger(range) || !Number.isInteger(start))
+            return [];
         console.error('Not implemented yet');
         return [];
     }
@@ -81,16 +89,22 @@ class primes {
     }
 
     getPrimesTrialDivision(range, start = 0) {
+        if (!Number.isInteger(range) || !Number.isInteger(start))
+            return [];
         console.error('Not implemented yet');
         return [];
     }
 
     getPrimesSieveEratosthenes(range, start = 0) {
+        if (!Number.isInteger(range) || !Number.isInteger(start))
+            return [];
         console.error('Not implemented yet');
         return [];
     }
 
     getPrimesBucketSieve(range, start = 0) {
+        if (!Number.isInteger(range) || !Number.isInteger(start))
+            return [];
         console.error('Not implemented yet');
         return [];
     }
