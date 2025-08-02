@@ -54,8 +54,14 @@ class primes {
     }
 
     countPrimesTrialDivision(range, start = 0) {
-        console.error('Not implemented yet');
-        return [];
+        if (!Number.isInteger(range) || !Number.isInteger(start))
+            return [];
+        let primes = start < 2 ? [] : [2];
+        const end = start + range;
+        for (let number = start % 2 == 1 ? start : start++; number <= end; number += 2)
+            if (this.isPrimeTrialDivision(number))
+                primes.push(number);
+        return primes;
     }
 
     countPrimesSieveEratosthenes(range, start = 0) {
