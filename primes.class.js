@@ -44,14 +44,8 @@ class primes {
     isPrimeSieveEratosthenes(number) {
         if (!Number.isInteger(number) || number < 2 || number != 2 && number % 2 == 0)
             return false;
-        const field = new Array(number + 1).fill(true);
-        const end = Math.floor(Math.sqrt(number));
-        for (let candidate = 3; candidate <= end; candidate += 2)
-            if (field[candidate])
-                for (let multiple = candidate * 2; multiple <= number; multiple += candidate)
-                    field[multiple] = false;
-        return field[number];
-    }/* every even candidate is unused -> field can be compressed */
+        return this.getPrimesSieveEratosthenes(number).includes(number);
+    }
 
     isPrimeBucketSieve(number) {
         if (!Number.isInteger(number) || number < 2 || number != 2 && number % 2 == 0)
@@ -102,34 +96,19 @@ class primes {
     countPrimesTrialDivision(range, start = 0) {
         if (!Number.isInteger(range) || !Number.isInteger(start))
             return 0;
-        let count = start < 2 ? 0 : 1;
-        const end = start + range;
-        for (let number = start % 2 == 1 ? start : start++; number <= end; number += 2)
-            if (this.isPrimeTrialDivision(number))
-                count++;
-        return count;
+        return this.getPrimesTrialDivision(range, start).length;
     }
 
     countPrimesSieveEratosthenes(range, start = 0) {
         if (!Number.isInteger(range) || !Number.isInteger(start))
             return 0;
-        let count = start < 2 ? 0 : 1;
-        const field = new Array(start + range + 1).fill(true);
-        const end = Math.floor(Math.sqrt(start + range));
-        for (let candidate = 3; candidate <= end; candidate += 2)
-            if (field[candidate]) {
-                count++;
-                for (let multiple = candidate * 2; multiple <= end; multiple += candidate)
-                    field[multiple] = false;
-            }
-        return count;
-    }/* every even candidate is unused -> field can be compressed */
+        return this.getPrimesSieveEratosthenes(range, start).length;
+    }
 
     countPrimesBucketSieve(range, start = 0) {
         if (!Number.isInteger(range) || !Number.isInteger(start))
             return 0;
-        console.error('Not implemented yet');
-        return 0;
+        return this.getPrimesBucketSieve(range, start).length;
     }
 
     selfTestCountPrimes(range = 20, start = 0) {
