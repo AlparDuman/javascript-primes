@@ -55,8 +55,12 @@ class primes {
     isPrimeBucketSieve(number) {
         if (!Number.isInteger(number) || number < 2)
             return false;
-        console.error('Not implemented yet');
-        return false;
+        const limit = Math.floor(Math.sqrt(number));
+        const smallPrimes = this.getPrimesSieveEratosthenes(Math.floor(Math.sqrt(limit)));
+        for (const prime of smallPrimes)
+            if (number % prime == 0)
+                return number == prime;
+        return true;
     }
 
 
