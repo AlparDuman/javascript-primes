@@ -23,26 +23,70 @@ class primes {
 
     /* ---------- IS PRIME ---------- */
 
-    isPrime(number) { }
+    isPrime(number) {
+        return this.isPrimeTrialDivision(number);
+    }
 
-    isPrimeTrialDivision(number) { }
-    isPrimeSieveEratosthenes(number) { }
-    isPrimeBucketSieve(number) { }
+    isPrimeTrialDivision(number) {
+        if (!Number.isInteger(number) || number < 2 || number != 2 && number % 2 == 0)
+            return false;
+        const sqrt = Math.floor(Math.sqrt(number));
+        for (let divisor = 3; divisor <= sqrt; divisor += 2)
+            if (number % divisor == 0)
+                return false;
+        return true;
+    }
+
+    isPrimeSieveEratosthenes(number) {
+        console.error('Not implemented yet');
+        return false;
+    }
+
+    isPrimeBucketSieve(number) {
+        console.error('Not implemented yet');
+        return false;
+    }
 
     /* ---------- COUNT PRIMES ---------- */
 
-    countPrimes(range, start = 0) { }
+    countPrimes(range, start = 0) {
+        return this.countPrimesTrialDivision(range, start);
+    }
 
-    countPrimesTrialDivision(range, start = 0) { }
-    countPrimesSieveEratosthenes(range, start = 0) { }
-    countPrimesBucketSieve(range, start = 0) { }
+    countPrimesTrialDivision(range, start = 0) {
+        console.error('Not implemented yet');
+        return [];
+    }
+
+    countPrimesSieveEratosthenes(range, start = 0) {
+        console.error('Not implemented yet');
+        return [];
+    }
+
+    countPrimesBucketSieve(range, start = 0) {
+        console.error('Not implemented yet');
+        return [];
+    }
 
     /* ---------- GET PRIMES ---------- */
 
-    getPrimes(range, start = 0) { }
+    getPrimes(range, start = 0) {
+        return this.getPrimesTrialDivision(range, start);
+    }
 
-    getPrimesTrialDivision(range, start = 0) { }
-    getPrimesSieveEratosthenes(range, start = 0) { }
-    getPrimesBucketSieve(range, start = 0) { }
+    getPrimesTrialDivision(range, start = 0) {
+        console.error('Not implemented yet');
+        return [];
+    }
+
+    getPrimesSieveEratosthenes(range, start = 0) {
+        console.error('Not implemented yet');
+        return [];
+    }
+
+    getPrimesBucketSieve(range, start = 0) {
+        console.error('Not implemented yet');
+        return [];
+    }
 
 }
