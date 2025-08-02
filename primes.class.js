@@ -150,13 +150,14 @@ class primes {
 
     getPrimesSieveEratosthenes(range, start = 0) {
         if (!Number.isInteger(range) || !Number.isInteger(start))
-            return 0;
-        let primes = start < 2 ? [] : [2];
+            return [];
         const field = new Array(start + range + 1).fill(true);
-        const end = Math.floor(Math.sqrt(start + range));
+        const end = start + range;
+        let primes = start <= 2 && end >= 2 ? [2] : [];
         for (let candidate = 3; candidate <= end; candidate += 2)
             if (field[candidate]) {
-                primes.push(candidate);
+                if (candidate >= start)
+                    primes.push(candidate);
                 for (let multiple = candidate * 2; multiple <= end; multiple += candidate)
                     field[multiple] = false;
             }
