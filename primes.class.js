@@ -19,7 +19,13 @@
 
 class Primes {
 
-    constructor() { }
+    #smallPrimes;
+    #smallPrimesLast;
+
+    constructor() {
+        this.#smallPrimes = this.#generateSmallPrimes(Number.MAX_SAFE_INTEGER);
+        this.#smallPrimesLast = this.#smallPrimes.at(-1);
+    }
 
 
 
@@ -122,6 +128,10 @@ class Primes {
 
 
 
+    /* ---------- SMALL PRIMES ---------- */
+
+
+
     static BitArray = class {
         #mask;
         #field;
@@ -160,6 +170,33 @@ class Primes {
             return false;
         }
     }
+
+
+
+    #generateSmallPrimes(range) {
+        console.log('[primes] generating small primes ...');
+        console.time('exec');
+        range = Math.floor(Math.sqrt(range));
+        const sieveField = new Primes.BitArray(range);
+        const limit = Math.floor(Math.sqrt(range));
+        let primes = [];
+        let candidate = 7;
+        if (range >= 2) primes.push(2);
+        if (range >= 3) primes.push(3);
+        if (range >= 5) primes.push(5);
+        for (; candidate <= limit; candidate += 2)
+            if (sieveField.get(candidate, false)) {
+                primes.push(candidate);
+                const step = candidate * 2;
+                for (let multiple = candidate + step; multiple <= range; multiple += step)
+                    sieveField.set(multiple, false);
+            }
+        for (; candidate <= range; candidate += 2)
+            if (sieveField.get(candidate, false))
+                primes.push(candidate);
+        console.timeEnd('exec');
+        console.log('[primes]', primes.length, 'small primes generated');
+        return primes;
     }
 
 
