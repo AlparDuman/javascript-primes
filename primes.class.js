@@ -101,8 +101,8 @@ class primes {
     getPrimesSieveEratosthenes(range, start = 0) {
         if (!Number.isInteger(range) || !Number.isInteger(start) || start + range < 2)
             return [];
-        const field = new Array(start + range + 1).fill(true);
         const end = start + range;
+        const field = new Array(end + 1).fill(true);
         let primes = start <= 2 && end >= 2 ? [2] : [];
         for (let candidate = 3; candidate <= end; candidate += 2)
             if (field[candidate]) {
