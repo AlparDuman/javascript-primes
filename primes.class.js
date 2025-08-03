@@ -57,36 +57,6 @@ class primes {
         return true;
     }
 
-    selfTestIsPrime(range = 20, start = 0) {
-        console.log('Self test is prime');
-        const end = start + range;
-
-        let resultsTD = [];
-        console.time('exec');
-        for (let i = start; i < end; i++)
-            resultsTD.push(this.isPrimeTrialDivision(i));
-        console.timeEnd('exec');
-        console.log('Test isPrimeTrialDivision()', resultsTD);
-
-        let resultsSE = [];
-        console.time('exec');
-        for (let i = start; i < end; i++)
-            resultsSE.push(this.isPrimeSieveEratosthenes(i));
-        console.timeEnd('exec');
-        console.log('Test isPrimeSieveEratosthenes()', resultsSE);
-
-        let resultsBS = [];
-        console.time('exec');
-        for (let i = start; i < end; i++)
-            resultsBS.push(this.isPrimeBucketSieve(i));
-        console.timeEnd('exec');
-        console.log('Test isPrimeBucketSieve()', resultsBS);
-
-        for (let i = start; i < end; i++)
-            if (resultsTD[i] !== resultsSE[i] || resultsSE[i] !== resultsBS[i])
-                console.error(`Found issue for ${i}: {trial: ${resultsTD[i]}, sieve: ${resultsSE[i]}, bucket: ${resultsBS[i]}}`);
-    }
-
 
 
     /* ---------- COUNT PRIMES ---------- */
@@ -153,27 +123,68 @@ class primes {
         return [];
     }
 
-    selfTestGetPrimes(range = 20, start = 0) {
-        console.log('Self test get primes');
 
+
+    /* ---------- SELF TEST ---------- */
+
+
+
+    selfTest() {
+        const start = parseInt(Math.random() * 1e4);
+        const range = parseInt(Math.random() * 1e4);
+        const end = start + range;
+
+        let results = {
+            trialDivision: {
+                is: [],
+                count: 0,
+                get: []
+            },
+            sieveEratosthenes: {
+                is: [],
+                count: 0,
+                get: []
+            },
+            bucketSieve: {
+                is: [],
+                count: 0,
+                get: []
+            }
+        };
+
+        console.log('[primes] testing methods via trial division ...');
         console.time('exec');
-        let resultsTD = this.getPrimesTrialDivision(range, start);
+        for (let i = start; i < end; i++)
+            results['trialDivision']['is'].push(this.isPrimeTrialDivision(i));
+        results['trialDivision']['count'] = this.countPrimesTrialDivision(range, start);
+        results['trialDivision']['get'] = this.getPrimesTrialDivision(range, start);
         console.timeEnd('exec');
-        console.log('Test getPrimesTrialDivision()', resultsTD);
 
+        console.log('[primes] testing methods via sieve eratosthenes ...');
         console.time('exec');
-        let resultsSE = this.getPrimesSieveEratosthenes(range, start);
+        for (let i = start; i < end; i++)
+            results['sieveEratosthenes']['is'].push(this.isPrimeSieveEratosthenes(i));
+        results['sieveEratosthenes']['count'] = this.countPrimesSieveEratosthenes(range, start);
+        results['sieveEratosthenes']['get'] = this.getPrimesSieveEratosthenes(range, start);
         console.timeEnd('exec');
-        console.log('Test getPrimesSieveEratosthenes()', resultsSE);
 
+        console.log('[primes] testing methods via bucket sieve ...');
         console.time('exec');
-        let resultsBS = this.getPrimesBucketSieve(range, start);
+        for (let i = start; i < end; i++)
+            results['bucketSieve']['is'].push(this.isPrimeBucketSieve(i));
+        results['bucketSieve']['count'] = this.countPrimesBucketSieve(range, start);
+        results['bucketSieve']['get'] = this.getPrimesBucketSieve(range, start);
         console.timeEnd('exec');
-        console.log('Test getPrimesBucketSieve()', resultsBS);
 
-        for (let i = start; i < range; i++)
-            if (resultsTD[i] !== resultsSE[i] || resultsSE[i] !== resultsBS[i])
-                console.error(`Found issue for ${i}: {trial: ${resultsTD[i]}, sieve: ${resultsSE[i]}, bucket: ${resultsBS[i]}}`);
+        console.log('[primes] testing results:', results);
+
+        if (results['trialDivision']['count'] !== results['sieveEratosthenes']['count'] || results['sieveEratosthenes']['count'] !== results['bucketSieve']['count'])
+            console.error(`[primes] trialDivision:${results['trialDivision']['count']}, sieveEratosthenes:${results['sieveEratosthenes']['count']}, bucketSieve:${results['bucketSieve']['count']}`);
+
+        for (let key in { is: null, get: null })
+            for (let i = start; i < end; i++)
+                if (results['trialDivision'][key][i] !== results['sieveEratosthenes'][key][i] || results['sieveEratosthenes'][key][i] !== results['bucketSieve'][key][i])
+                    console.error(`[primes] trialDivision:${results['trialDivision'][key][i]}, sieveEratosthenes:${results['sieveEratosthenes'][key][i]}, bucketSieve:${results['bucketSieve'][key][i]}`);
     }
 
 }
