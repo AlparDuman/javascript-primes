@@ -142,7 +142,7 @@ class primes {
             return [];
         let primes = start < 2 ? [] : [2];
         const end = start + range;
-        for (let number = start % 2 == 1 ? start : start++; number <= end; number += 2)
+        for (let number = start % 2 == 1 ? start : ++start; number <= end; number += 2) 
             if (this.isPrimeTrialDivision(number))
                 primes.push(number);
         return primes;
