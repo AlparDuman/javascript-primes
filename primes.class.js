@@ -17,7 +17,7 @@
     else <https://www.gnu.org/licenses/>.
 */
 
-class primes {
+class Primes {
 
     constructor() { }
 
