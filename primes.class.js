@@ -42,7 +42,7 @@ class Primes {
     }
 
     isPrimeSieveEratosthenes(number) {
-        return this.getPrimesSieveEratosthenes(number).includes(number);
+        return this.getPrimesSieveEratosthenes(number, number).includes(number);
     }
 
     isPrimeBucketSieve(number) {
