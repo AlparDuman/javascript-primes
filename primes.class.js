@@ -140,8 +140,8 @@ class primes {
     getPrimesTrialDivision(range, start = 0) {
         if (!Number.isInteger(range) || !Number.isInteger(start))
             return [];
-        let primes = start < 2 ? [] : [2];
         const end = start + range;
+        let primes = start <= 2 && end >= 2 ? [2] : [];
         for (let number = start % 2 == 1 ? start : ++start; number <= end; number += 2) 
             if (this.isPrimeTrialDivision(number))
                 primes.push(number);
