@@ -149,7 +149,7 @@ class primes {
     }
 
     getPrimesTrialDivision(range, start = 0) {
-        if (!Number.isInteger(range) || !Number.isInteger(start))
+        if (!Number.isInteger(range) || !Number.isInteger(start) || start + range < 2)
             return [];
         const end = start + range;
         let primes = start <= 2 && end >= 2 ? [2] : [];
@@ -160,7 +160,7 @@ class primes {
     }
 
     getPrimesSieveEratosthenes(range, start = 0) {
-        if (!Number.isInteger(range) || !Number.isInteger(start))
+        if (!Number.isInteger(range) || !Number.isInteger(start) || start + range < 2)
             return [];
         const field = new Array(start + range + 1).fill(true);
         const end = start + range;
@@ -176,7 +176,7 @@ class primes {
     }/* every even candidate is unused -> field can be compressed */
 
     getPrimesBucketSieve(range, start = 0) {
-        if (!Number.isInteger(range) || !Number.isInteger(start))
+        if (!Number.isInteger(range) || !Number.isInteger(start) || start + range < 2)
             return [];
         console.error('Not implemented yet');
         return [];
