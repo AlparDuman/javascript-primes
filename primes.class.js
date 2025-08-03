@@ -150,7 +150,7 @@ class primes {
             }
         };
 
-        console.log('[primes] testing methods via trial division ...');
+        console.log('[primes] testing methods of trial division ...');
         console.time('exec');
         for (let i = start; i < end; i++)
             results['trialDivision']['is'].push(this.isPrimeTrialDivision(i));
@@ -158,7 +158,7 @@ class primes {
         results['trialDivision']['get'] = this.getPrimesTrialDivision(range, start);
         console.timeEnd('exec');
 
-        console.log('[primes] testing methods via sieve eratosthenes ...');
+        console.log('[primes] testing methods of sieve eratosthenes ...');
         console.time('exec');
         for (let i = start; i < end; i++)
             results['sieveEratosthenes']['is'].push(this.isPrimeSieveEratosthenes(i));
@@ -166,7 +166,7 @@ class primes {
         results['sieveEratosthenes']['get'] = this.getPrimesSieveEratosthenes(range, start);
         console.timeEnd('exec');
 
-        console.log('[primes] testing methods via bucket sieve ...');
+        console.log('[primes] testing methods of bucket sieve ...');
         console.time('exec');
         for (let i = start; i < end; i++)
             results['bucketSieve']['is'].push(this.isPrimeBucketSieve(i));
