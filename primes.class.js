@@ -34,8 +34,8 @@ class Primes {
     isPrimeTrialDivision(number) {
         if (!Number.isInteger(number) || number < 2 || number != 2 && number % 2 == 0)
             return false;
-        const sqrt = Math.floor(Math.sqrt(number));
-        for (let divisor = 3; divisor <= sqrt; divisor += 2)
+        const limit = Math.floor(Math.sqrt(number));
+        for (let divisor = 3; divisor <= limit; divisor += 2)
             if (number % divisor == 0)
                 return false;
         return true;
