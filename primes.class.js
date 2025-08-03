@@ -98,44 +98,15 @@ class primes {
     }
 
     countPrimesTrialDivision(range, start = 0) {
-        if (!Number.isInteger(range) || !Number.isInteger(start))
-            return 0;
         return this.getPrimesTrialDivision(range, start).length;
     }
 
     countPrimesSieveEratosthenes(range, start = 0) {
-        if (!Number.isInteger(range) || !Number.isInteger(start))
-            return 0;
         return this.getPrimesSieveEratosthenes(range, start).length;
     }
 
     countPrimesBucketSieve(range, start = 0) {
-        if (!Number.isInteger(range) || !Number.isInteger(start))
-            return 0;
         return this.getPrimesBucketSieve(range, start).length;
-    }
-
-    selfTestCountPrimes(range = 20, start = 0) {
-        console.log('Self test count primes');
-
-        console.time('exec');
-        let resultsTD = this.countPrimesTrialDivision(range, start);
-        console.timeEnd('exec');
-        console.log('Test countPrimesTrialDivision()', resultsTD);
-
-        console.time('exec');
-        let resultsSE = this.countPrimesSieveEratosthenes(range, start);
-        console.timeEnd('exec');
-        console.log('Test countPrimesSieveEratosthenes()', resultsSE);
-
-        console.time('exec');
-        let resultsBS = this.countPrimesBucketSieve(range, start);
-        console.timeEnd('exec');
-        console.log('Test countPrimesBucketSieve()', resultsBS);
-
-        for (let i = start; i < range; i++)
-            if (resultsTD[i] !== resultsSE[i] || resultsSE[i] !== resultsBS[i])
-                console.error(`Found issue for ${i}: {trial: ${resultsTD[i]}, sieve: ${resultsSE[i]}, bucket: ${resultsBS[i]}}`);
     }
 
 
