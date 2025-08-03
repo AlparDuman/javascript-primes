@@ -42,8 +42,6 @@ class primes {
     }
 
     isPrimeSieveEratosthenes(number) {
-        if (!Number.isInteger(number) || number < 2 || number != 2 && number % 2 == 0)
-            return false;
         return this.getPrimesSieveEratosthenes(number).includes(number);
     }
 
