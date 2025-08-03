@@ -119,6 +119,47 @@ class Primes {
             return [];
         console.error('Not implemented yet');
         return [];
+
+
+
+    static BitArray = class {
+        #mask;
+        #field;
+        #size;
+
+        constructor(size) {
+            if (!Number.isInteger(size) || size < 1)
+                throw new Error(`Integer above 1 expected but ${size} of type ${typeof size} given`);
+            this.#mask = [0, 0x1, 0, 0, 0, 0, 0, 0x2, 0, 0, 0, 0x4, 0, 0x8, 0, 0, 0, 0x10, 0, 0x20, 0, 0, 0, 0x40, 0, 0, 0, 0, 0, 0x80];
+            this.#field = new Uint8Array(Math.floor(size / 30) + 1);
+            this.#size = size;
+        }
+
+        set(number, do_checks = true) {
+            if (do_checks) {
+                if (!Number.isInteger(number))
+                    throw new Error(`Integer expected but ${typeof size} given`);
+                if (number % 2 == 0 || number < 0 || number > this.#size)
+                    return;
+            }
+            const mask = this.#mask[number % 30];
+            if (mask != 0)
+                this.#field[Math.floor(number / 30)] |= mask;
+        }
+
+        get(number, do_checks = true) {
+            if (do_checks) {
+                if (!Number.isInteger(number))
+                    throw new Error(`Integer expected but ${typeof size} given`);
+                if (number % 2 == 0 || number < 7 || number > this.#size)
+                    return false;
+            }
+            const mask = this.#mask[number % 30];
+            if (mask != 0)
+                return (this.#field[Math.floor(number / 30)] & mask) == 0;
+            return false;
+        }
+    }
     }
 
 
