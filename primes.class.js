@@ -52,6 +52,10 @@ class Primes {
     }
 
     isPrimeBucketSieve(number) {
+        return this.getPrimesBucketSieve(number, number).includes(number);
+    }
+
+    isPrimeBucketSieveFast() {
         if (!Number.isInteger(number) || number < 2 || number != 2 && number % 2 == 0)
             return false;
         for (const prime of this.#smallPrimes)
