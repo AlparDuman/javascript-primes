@@ -50,8 +50,7 @@ class primes {
     isPrimeBucketSieve(number) {
         if (!Number.isInteger(number) || number < 2 || number != 2 && number % 2 == 0)
             return false;
-        const limit = Math.floor(Math.sqrt(number));
-        const smallPrimes = this.getPrimesSieveEratosthenes(Math.floor(Math.sqrt(limit)));
+        const smallPrimes = this.getPrimesSieveEratosthenes(Math.floor(Math.sqrt(number)));
         for (const prime of smallPrimes)
             if (number % prime == 0)
                 return number == prime;
@@ -142,7 +141,7 @@ class primes {
             return [];
         const end = start + range;
         let primes = start <= 2 && end >= 2 ? [2] : [];
-        for (let number = start % 2 == 1 ? start : ++start; number <= end; number += 2) 
+        for (let number = start % 2 == 1 ? start : ++start; number <= end; number += 2)
             if (this.isPrimeTrialDivision(number))
                 primes.push(number);
         return primes;
